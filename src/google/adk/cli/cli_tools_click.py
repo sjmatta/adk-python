@@ -1463,7 +1463,7 @@ def cli_deploy_cloud_run(
 
 @deploy.command("agent_engine")
 @click.option(
-    "--express_mode_api_key",
+    "--api_key",
     type=str,
     default=None,
     help=(
@@ -1481,7 +1481,7 @@ def cli_deploy_cloud_run(
     help=(
         "Optional. Google Cloud project to deploy the agent. It will override"
         " GOOGLE_CLOUD_PROJECT in the .env file (if it exists). It will be"
-        " ignored if express_mode_api_key is set."
+        " ignored if api_key is set."
     ),
 )
 @click.option(
@@ -1491,7 +1491,7 @@ def cli_deploy_cloud_run(
     help=(
         "Optional. Google Cloud region to deploy the agent. It will override"
         " GOOGLE_CLOUD_LOCATION in the .env file (if it exists). It will be"
-        " ignored if express_mode_api_key is set."
+        " ignored if api_key is set."
     ),
 )
 @click.option(
@@ -1500,7 +1500,7 @@ def cli_deploy_cloud_run(
     default=None,
     help=(
         "Optional. GCS bucket for staging the deployment artifacts. It will be"
-        " ignored if express_mode_api_key is set."
+        " ignored if api_key is set."
     ),
 )
 @click.option(
@@ -1613,7 +1613,7 @@ def cli_deploy_agent_engine(
     staging_bucket: Optional[str],
     agent_engine_id: Optional[str],
     trace_to_cloud: Optional[bool],
-    express_mode_api_key: Optional[str],
+    api_key: Optional[str],
     display_name: str,
     description: str,
     adk_app: str,
@@ -1629,7 +1629,7 @@ def cli_deploy_agent_engine(
   Example:
 
     # With Express Mode API Key
-    adk deploy agent_engine --express_mode_api_key=[api_key] my_agent
+    adk deploy agent_engine --api_key=[api_key] my_agent
 
     # With Google Cloud Project and Region
     adk deploy agent_engine --project=[project] --region=[region]
@@ -1644,7 +1644,7 @@ def cli_deploy_agent_engine(
         staging_bucket=staging_bucket,
         agent_engine_id=agent_engine_id,
         trace_to_cloud=trace_to_cloud,
-        express_mode_api_key=express_mode_api_key,
+        api_key=api_key,
         adk_app_object=adk_app_object,
         display_name=display_name,
         description=description,
